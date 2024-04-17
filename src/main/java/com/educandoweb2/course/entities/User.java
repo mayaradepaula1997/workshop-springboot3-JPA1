@@ -27,6 +27,7 @@ public class User implements Serializable {
     @OneToMany (mappedBy = "client") //(mappedBy = "client"): nome do atributo que está do outro lado da associação/classe Order
     private List <Order> orders = new ArrayList<>(); //Implementar a associação //Instanciar a coleção
 
+
     public User (){
 
     }

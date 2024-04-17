@@ -26,7 +26,7 @@ public class OrderResource {
         return ResponseEntity.ok().body(list);//ResponseEntity.ok = retorna a resposta com sucesso no HTTP // body(u) = Corpo da resposta que foi instancio a classer "User"
     }
 
-    //Implementar um Endpoint para buscar um usuario pelo Id
+    //Implementar um Endpoint para buscar um pedido pelo Id
     @GetMapping (value = "/{id}")
     public ResponseEntity<Order> findById (@PathVariable Long id){
         Order obj = service.findById(id);
