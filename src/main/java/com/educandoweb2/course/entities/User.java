@@ -1,5 +1,6 @@
 package com.educandoweb2.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -22,6 +23,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore
     @OneToMany (mappedBy = "client") //(mappedBy = "client"): nome do atributo que está do outro lado da associação/classe Order
     private List <Order> orders = new ArrayList<>(); //Implementar a associação //Instanciar a coleção
 
