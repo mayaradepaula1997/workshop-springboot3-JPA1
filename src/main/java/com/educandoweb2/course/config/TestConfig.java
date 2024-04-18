@@ -1,8 +1,10 @@
 package com.educandoweb2.course.config;
 
+import com.educandoweb2.course.entities.Category;
 import com.educandoweb2.course.entities.Order;
 import com.educandoweb2.course.entities.User;
 import com.educandoweb2.course.entities.enums.OrderStatus;
+import com.educandoweb2.course.repositories.CategoryRepository;
 import com.educandoweb2.course.repositories.OrderRepository;
 import com.educandoweb2.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,19 @@ public class TestConfig implements CommandLineRunner { //CommandLineRunner:para 
     private OrderRepository orderRepository;
 
 
+    @Autowired //resolver a dependencia dos objetos
+    private CategoryRepository categoryRepository;
+
+
+
     @Override
     public void run(String... args) throws Exception { //run: tudo que estiver dentro desse método vai ser executado
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
 
 
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
