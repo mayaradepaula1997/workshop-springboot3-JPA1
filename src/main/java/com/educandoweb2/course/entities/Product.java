@@ -24,7 +24,8 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @Transient
+    @ManyToMany                 //"tb_product_category": nome da tabela relacional no banco de dados // "product_id": nome da chave estrangeira // inverseJoinColumns: define a chave estrangeira da outra entidade "category"
+    @JoinTable (name = "tb_product_category", joinColumns = @JoinColumn (name = "product_id"), inverseJoinColumns = @JoinColumn (name = "category_id"))
     private Set <Category> categories = new HashSet<>(); //Set: representa um conjunto, para garantir que não vou ter um produto com a mesma ocorrencia
                                                          //new: Já precisamos instanciar o conjunto para garantir que a coleção não começe valendo "nulo"
                                                         //HashSet<>: O "Set" é uma interface,não pode ser instanciado, se utiliza uma classe correspondente que no caso é a HashSet<>

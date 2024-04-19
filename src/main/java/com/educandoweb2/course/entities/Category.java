@@ -1,5 +1,6 @@
 package com.educandoweb2.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -19,7 +20,8 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    @Transient
+    @JsonIgnore
+    @ManyToMany (mappedBy = "categories") //"categories": nome da coleção (set) que tem na outra classe (product)
     private Set <Product> products = new HashSet<>();
 
 
