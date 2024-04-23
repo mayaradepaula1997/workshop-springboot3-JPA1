@@ -4,5 +4,6 @@ import com.educandoweb2.course.entities.Category;
 import com.educandoweb2.course.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+//SALVAR NO BANCO DE DADOS
 public interface ProductRepository extends JpaRepository<Product,Long> {  //<Product,Long> implementação padrão a interface
 }

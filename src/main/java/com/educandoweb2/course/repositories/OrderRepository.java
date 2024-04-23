@@ -4,5 +4,6 @@ import com.educandoweb2.course.entities.Order;
 import com.educandoweb2.course.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+//SALVAR NO BANCO DE DADOS
 public interface OrderRepository extends JpaRepository<Order,Long> {  //<Order,Long> implementação padrão a interface
 }

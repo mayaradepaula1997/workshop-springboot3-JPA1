@@ -1,6 +1,7 @@
 package com.educandoweb2.course.entities;
 
 import com.educandoweb2.course.entities.pk.OrdeItemPk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -18,7 +19,7 @@ public class OrderItem implements Serializable {
     //O PRIMEIRO ATRIBUTO VAI SER O IDENTIFICADOR, QUE É CORRESPONDENTE A CHAVE PRIMARIA "private OrdeItemPk id;"
 
     @EmbeddedId // por esse ser um ID composto
-    private OrdeItemPk id; //correspondente a chave primaria
+    private OrdeItemPk id = new OrdeItemPk(); //correspondente a chave primaria //instanciar o "id", porque é uma classe auxiliar
     private Integer quantity;
     private Double price;
 
@@ -33,16 +34,19 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public Order getOrder(){
         return id.getOrder();
     }
-    public void setOrder (Order order){ //estou informando um Pedido, ai o metodo vai lá no meu "Id" e vao  "jogar" o pedido lá dentro
+
+    public void setOrder (Order order){ //estou informando um Pedido, ai o metodo vai lá no meu "Id" e vão "jogar" o pedido lá dentro
         id.setOrder(order);
     }
 
     public Product getProduct(){
         return id.getProduct();
     }
+
     public void setProduct (Product product){
         id.setProduct(product);
     }
