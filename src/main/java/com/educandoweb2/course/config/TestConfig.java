@@ -83,6 +83,12 @@ public class TestConfig implements CommandLineRunner { //CommandLineRunner:para 
 
         orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"),o1);
+        o1.setPayment(pay1); //Associação de mão dupla em memória //Foi associado o PEDIDO 1 (o1) com o PAGAMENTO (pay1)
+
+        orderRepository.save(o1); //Salva novamente no banco de dados
+
+
 
     }
 }

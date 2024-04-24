@@ -1,5 +1,6 @@
 package com.educandoweb2.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -29,6 +30,11 @@ public class Product implements Serializable {
     private Set <Category> categories = new HashSet<>(); //Set: representa um conjunto, para garantir que não vou ter um produto com a mesma ocorrencia
                                                          //new: Já precisamos instanciar o conjunto para garantir que a coleção não começe valendo "nulo"
                                                         //HashSet<>: O "Set" é uma interface,não pode ser instanciado, se utiliza uma classe correspondente que no caso é a HashSet<>
+
+    @OneToMany (mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>(); //Declara a coleção de "itens"
+
+
     public Product (){
 
     }
@@ -83,6 +89,15 @@ public class Product implements Serializable {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    @JsonIgnore
+    public Set<Order> getOrders (){ //O método "Get" vai retorna uma lista de "Order" e não de "OrderItem"
+        Set<Order> set = new HashSet<>();
+        for (OrderItem x : items){
+            set.add(x.getOrder());
+        }
+        return set;
     }
 
     @Override

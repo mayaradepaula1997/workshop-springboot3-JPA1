@@ -31,6 +31,9 @@ public class Order implements Serializable  {
    @OneToMany(mappedBy = "id.order") // Associação com varia itens (OrderItem) //"id.order": porwur no "OrderItem" temos um atributo "id" e o id por sua vez que tem o perido
     private Set <OrderItem> items = new HashSet<>();
 
+   @OneToOne (mappedBy = "order", cascade = CascadeType.ALL) //Mapeando duas classes para o mesmo ID
+   private Payment payment; //Associação
+
 
     public Order(){
 
@@ -75,6 +78,14 @@ public class Order implements Serializable  {
 
     public void setClient(User client) {
         this.client = client;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     public Set <OrderItem> getItems(){
